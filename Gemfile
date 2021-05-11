@@ -28,6 +28,8 @@ gem 'devise'
 gem 'bootstrap-sass'
 gem 'faker'
 gem 'jquery-rails', '4.3.1'
+gem 'will_paginate',           '3.1.7'
+gem 'bootstrap-will_paginate', '1.0.0'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
@@ -53,7 +55,7 @@ group :test do
   gem 'capybara', '>= 2.15'
   gem 'selenium-webdriver'
   # Easy installation and use of chromedriver to run system tests with Chrome
-  gem 'webdrivers'
+  gem 'webdrivers', require: !ENV['SELENIUM_DRIVER_URL']
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
