@@ -1,5 +1,20 @@
-<center>
-  <h1>マッスルキングへようこそ！</h1>
-  <h2>あなたの自慢の肉体を見せびらかせませんか？</h2>
-  <p>いいねの数でランキング上位を狙える！？</p>
-</center>
+<% if logged_in? %>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-9">
+        <h3>みんなの筋トレメニュー (<%= @feed_items.count %>)</h3>
+        <%= render 'shared/feed' %>
+      </div>
+      <div class="col-md-3">
+        <p><%= link_to "新しい筋トレメニューの登録", new_training_path, class: "btn btn-primary btn-lg btn-record" %></p>
+  	  </div>
+    </div>
+  </div>
+<% else %>
+  <center>
+  　<h1>マッスルキングへようこそ！</h1>
+  　<h2>体を鍛えてきれいな肉体美を作り上げましょう！！</h2>
+    <p>みんなが投稿した筋トレメニューを参考にして体を作り上げよう！！</p>
+  　<p>自慢の肉体を投稿することもできる！！いいねの数でランキング上位を狙える！？</p>
+  </center>
+<% end %>

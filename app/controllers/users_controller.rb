@@ -8,6 +8,7 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
+    @trainings = @user.trainings.paginate(page: params[:page], per_page: 5)
   end
 
   def index

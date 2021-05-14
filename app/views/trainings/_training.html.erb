@@ -1,0 +1,13 @@
+<li id="post-<%= training.id %>">
+  <%= link_to gravatar_for(training.user, size: 50), training.user %>
+  <span class="name"><%= link_to training.name, training_path(training) %></span>
+  <span class="description"><%= training.description %></span><br>
+  <span class="reference"><%= link_to "参考", training.reference, target: :_blank %></span>
+  <span class="timestamp">
+    <%= time_ago_in_words(training.created_at) %>前に投稿
+  </span>
+  <% if current_user.admin? || (current_user == training.user) %>
+    <%= link_to "削除", training_path(training), method: :delete,
+                       data: { confirm: "本当に削除しますか？" } %>
+  <% end %>
+</li>
