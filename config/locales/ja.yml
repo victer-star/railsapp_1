@@ -28,6 +28,7 @@ ja:
         reference: 参照用URL
         popularity: 人気度
         user_id: メニュー作成者のID
+        picture: トレーニング画像
   date:
     abbr_day_names:
     - 日
