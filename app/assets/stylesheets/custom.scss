@@ -270,3 +270,9 @@ h2.training-name {
 .edit-training .delete-training {
   font-size: 15px;
 }
+
+.training-picture img {
+  max-width: 100%;
+  height: auto;
+  box-sizing: border-box;
+}

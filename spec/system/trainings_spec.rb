@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe "Trainings", type: :system do
   let!(:user) { create(:user) }
-  let!(:training) { create(:training, user: user) }
+  let!(:training) { create(:training, :picture, user: user) }
 
   describe "筋トレメニュー登録ページ" do
     before do
@@ -47,18 +47,20 @@ RSpec.describe "Trainings", type: :system do
         end
       end
   
-      context "料理の更新処理" do
+      context "筋トレメニューの更新処理" do
         it "有効な更新" do
           fill_in "メニュー名", with: "背筋"
           fill_in "説明", with: "背中の筋肉を鍛えます。"
           fill_in "コツ・ポイント", with: "足をしっかり固定して行いましょう。"
           fill_in "参照用URL", with: "#"
+          attach_file "training[picture]", "#{Rails.root}/spec/fixtures/test_training2.jpg"
           click_button "更新する"
           expect(page).to have_content "筋トレメニューが更新されました！"
           expect(training.reload.name).to eq "背筋"
           expect(training.reload.description).to eq "背中の筋肉を鍛えます。"
           expect(training.reload.tips).to eq "足をしっかり固定して行いましょう。"
           expect(training.reload.reference).to eq "#"
+          expect(training.reload.picture.url).to include "test_training2.jpg"
         end
   
         it "無効な更新" do
@@ -94,6 +96,7 @@ RSpec.describe "Trainings", type: :system do
           expect(page).to have_content training.description
           expect(page).to have_content training.tips
           expect(page).to have_content training.reference
+          expect(page).to have_link nil, href: training_path(training), class: 'training-picture'
         end
       end
     end
@@ -104,8 +107,15 @@ RSpec.describe "Trainings", type: :system do
         fill_in "説明", with: "背中の筋肉を鍛えます。"
         fill_in "コツ・ポイント", with: "足をしっかり固定して行いましょう。"
         fill_in "参照用URL", with: "#"
+        attach_file "training[picture]", "#{Rails.root}/spec/fixtures/test_training.jpg"
         click_button "登録する"
         expect(page).to have_content "筋トレメニューが登録されました！"
+      end
+
+      it "画像無しで登録すると、デフォルト画像が割り当てられること" do
+        fill_in "メニュー名", with: "背筋"
+        click_button "登録する"
+        expect(page).to have_link(href: training_path(Training.first))
       end
 
       it "無効な情報で料理登録を行うと料理登録失敗のフラッシュが表示されること" do

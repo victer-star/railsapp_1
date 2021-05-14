@@ -1,21 +1,28 @@
 <% provide(:title, "#{@training.name}") %>
 <div class="container">
   <div class="row">
-    <h2 class="training-name"><%= @training.name %></h2>
-    <div class="change-training">
-      <% if current_user == @training.user %>
-        <%= link_to "編集", edit_training_path(@training), class: 'edit-training' %>　
-      <% end %>
-      <% if current_user.admin? || (current_user == @training.user) %>
-        <%= link_to "削除", training_path(@training), method: :delete, class: 'delete-training',
-                                      data: { confirm: "本当に削除しますか？" } %>
-      <% end %>
+    <div class="col-md-4">
+      <span class="picture">
+        <%= link_to((image_tag @training.picture.thumb400.url), training_path(@training.id), class: 'training-picture') if @training.picture.url.present? %>
+      </span>
     </div>
-    <h4><%= @training.description %></h4>
-    <h4 class="training-reference">トレーニング方法：<%= link_to "#{@training.reference}", @training.reference, target: "_blank" %></h4>
-    <div class="tips">
-      <h5 class="title-tips">コツ・ポイント</h5>
-      <h5><%= @training.tips %></h5>
+    <div class="col-md-8">
+      <h2 class="training-name"><%= @training.name %></h2>
+      <div class="change-training">
+        <% if current_user == @training.user %>
+          <%= link_to "編集", edit_training_path(@training), class: 'edit-training' %>　
+        <% end %>
+        <% if current_user.admin? || (current_user == @training.user) %>
+          <%= link_to "削除", training_path(@training), method: :delete, class: 'delete-training',
+                                        data: { confirm: "本当に削除しますか？" } %>
+        <% end %>
+      </div>
+      <h4><%= @training.description %></h4>
+      <h4 class="training-reference">トレーニング方法：<%= link_to "#{@training.reference}", @training.reference, target: "_blank" %></h4>
+      <div class="tips">
+        <h5 class="title-tips">コツ・ポイント</h5>
+        <h5><%= @training.tips %></h5>
+      </div>
     </div>
   </div>
 </div>

@@ -26,5 +26,6 @@
 # Ignore master key for decrypting credentials and more.
 /config/master.key
 
-# vendor以下のファイルをgit管理対象から無視
+# 以下のファイルをgit管理対象から無視
 /vendor
+/public/uploads/*

@@ -4,6 +4,8 @@ RSpec.describe "筋トレメニュー編集", type: :request do
   let!(:user) { create(:user) }
   let!(:other_user) { create(:user) }
   let!(:training) { create(:training, user: user) }
+  let(:picture2_path) { File.join(Rails.root, 'spec/fixtures/test_training2.jpg') }
+  let(:picture2) { Rack::Test::UploadedFile.new(picture2_path) }
 
   context "認可されたユーザーの場合" do
     it "レスポンスが正常に表示されること(+フレンドリーフォワーディング)" do
@@ -13,7 +15,8 @@ RSpec.describe "筋トレメニュー編集", type: :request do
       patch training_path(training), params: { training: { name: "背筋",
                                                             description: "背中の筋肉を鍛えます。",
                                                             tips: "足をしっかり固定して行いましょう。",
-                                                            reference: "#" } }
+                                                            reference: "#",
+                                                            picture: picture2 } }
       redirect_to training
       follow_redirect!
       expect(response).to render_template('trainings/show')
