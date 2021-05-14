@@ -8,6 +8,7 @@ class User < ApplicationRecord
                                     foreign_key: "followed_id",
                                     dependent: :destroy
   has_many :followers, through: :passive_relationships, source: :follower
+  has_many :favorites, dependent: :destroy
   attr_accessor :remember_token
   before_save :downcase_email
   validates :name, presence: true, length: { maximum: 50 }
@@ -77,6 +78,22 @@ end
   def followed_by?(other_user)
     followers.include?(other_user)
   end
+
+  # 料理をお気に入りに登録する
+  def favorite(training)
+    Favorite.create!(user_id: id, training_id: training.id)
+  end
+
+  # 料理をお気に入り解除する
+  def unfavorite(training)
+    Favorite.find_by(user_id: id, training_id: training.id).destroy
+  end
+
+  # 現在のユーザーがお気に入り登録してたらtrueを返す
+  def favorite?(training)
+    !Favorite.find_by(user_id: id, training_id: training.id).nil?
+  end
+
 
   private
 

@@ -4,6 +4,8 @@ RSpec.describe "Users", type: :system do
   let!(:user) { create(:user) }
   let!(:admin_user) { create(:user, :admin) }
   let!(:other_user) { create(:user) }
+  let!(:training) { create(:training, user: user) }
+  let!(:other_training) { create(:training, user: other_user) }
 
   describe "ユーザー一覧ページ" do
     context "管理者ユーザーの場合" do
@@ -163,5 +165,76 @@ RSpec.describe "Users", type: :system do
     #     expect(page).to have_button 'フォローする'
     #   end
     # end
+
+    context "お気に入り登録/解除" do
+      before do
+        login_for_system(user)
+      end
+
+      # it "トップページからお気に入り登録/解除ができること", js: true do
+      #   visit root_path
+      #   link = find('.like')
+      #   expect(link[:href]).to include "/favorites/#{training.id}/create"
+      #   link.click
+      #   link = find('.unlike')
+      #   expect(link[:href]).to include "/favorites/#{training.id}/destroy"
+      #   link.click
+      #   link = find('.like')
+      #   expect(link[:href]).to include "/favorites/#{training.id}/create"
+      # end
+
+      # it "ユーザー個別ページからお気に入り登録/解除ができること", js: true do
+      #   visit user_path(user)
+      #   link = find('.like')
+      #   expect(link[:href]).to include "/favorites/#{training.id}/create"
+      #   link.click
+      #   link = find('.unlike')
+      #   expect(link[:href]).to include "/favorites/#{training.id}/destroy"
+      #   link.click
+      #   link = find('.like')
+      #   expect(link[:href]).to include "/favorites/#{training.id}/create"
+      # end
+
+      # it "筋トレメニュー個別ページからお気に入り登録/解除ができること", js: true do
+      #   visit training_path(training)
+      #   link = find('.like')
+      #   expect(link[:href]).to include "/favorites/#{training.id}/create"
+      #   link.click
+      #   link = find('.unlike')
+      #   expect(link[:href]).to include "/favorites/#{training.id}/destroy"
+      #   link.click
+      #   link = find('.like')
+      #   expect(link[:href]).to include "/favorites/#{training.id}/create"
+      # end
+
+      it "筋トレメニューのお気に入り登録/解除ができること" do
+        expect(user.favorite?(training)).to be_falsey
+        user.favorite(training)
+        expect(user.favorite?(training)).to be_truthy
+        user.unfavorite(training)
+        expect(user.favorite?(training)).to be_falsey
+      end
+
+      it "お気に入り一覧ページが期待通り表示されること" do
+        visit favorites_path
+        expect(page).not_to have_css ".favorite-training"
+        user.favorite(training)
+        user.favorite(other_training)
+        visit favorites_path
+        expect(page).to have_css ".favorite-training", count: 2
+        expect(page).to have_content training.name
+        expect(page).to have_content training.description
+        expect(page).to have_content "作成者: #{user.name}"
+        expect(page).to have_link user.name, href: user_path(user)
+        expect(page).to have_content other_training.name
+        expect(page).to have_content other_training.description
+        expect(page).to have_content "作成者: #{other_user.name}"
+        expect(page).to have_link other_user.name, href: user_path(other_user)
+        user.unfavorite(other_training)
+        visit favorites_path
+        expect(page).to have_css ".favorite-training", count: 1
+        expect(page).to have_content training.name
+      end
+    end
   end
 end

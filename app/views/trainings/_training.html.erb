@@ -1,9 +1,11 @@
 <li id="post-<%= training.id %>">
+  <% @training = training %>
   <%= link_to gravatar_for(training.user, size: 50), training.user %>
   <span class="name"><%= link_to training.name, training_path(training) %></span>
   <span>
     <%= link_to((image_tag training.picture.thumb200.url), training_path(training.id), class: 'training-picture') if training.picture.url.present? %>
   </span>
+  <%= render 'users/favorite_form' %>
   <span class="description"><%= training.description %></span><br>
   <span class="reference"><%= link_to "参考", training.reference, target: :_blank %></span>
   <span class="timestamp">

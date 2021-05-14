@@ -1,0 +1,14 @@
+<% @training = Training.find(favorite.training_id) %>
+<% user = @training.user %>
+<li id="favorite-<%= favorite.id %>">
+  <div class="row favorite-training">
+    <div class="col-md-2">
+      <%= link_to((image_tag @training.picture.url), training_path(@training), class: 'training-picture') %>
+    </div>
+    <div class="col-md-7">
+      <p><%= link_to @training.name, training_path(@training) %></p>
+      <p><%= @training.description %></p>
+      <p class="muscle-user">作成者: <%= link_to user.name, user_path(user) %></p>
+    </div>
+  </div>
+</li>
