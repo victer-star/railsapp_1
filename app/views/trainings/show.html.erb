@@ -1,4 +1,5 @@
 <% provide(:title, "#{@training.name}") %>
+<% @comments  = @training.feed_comment(@training.id) %>
 <div class="container">
   <div class="row">
     <div class="col-md-4">
@@ -23,6 +24,10 @@
       <div class="tips">
         <h5 class="title-tips">コツ・ポイント</h5>
         <h5><%= @training.tips %></h5>
+      </div>
+      <div class="comment">
+        <%= render "comments/feed_comments" %>
+        <%= render "comments/new" %>
       </div>
     </div>
   </div>
