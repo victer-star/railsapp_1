@@ -2,7 +2,9 @@ require 'rails_helper'
 
 RSpec.describe "Trainings", type: :system do
   let!(:user) { create(:user) }
+  let!(:other_user) { create(:user) }
   let!(:training) { create(:training, :picture, user: user) }
+  let!(:comment) { create(:comment, user_id: user.id, training: training) }
 
   describe "筋トレメニュー登録ページ" do
     before do
@@ -118,13 +120,40 @@ RSpec.describe "Trainings", type: :system do
         expect(page).to have_link(href: training_path(Training.first))
       end
 
-      it "無効な情報で料理登録を行うと料理登録失敗のフラッシュが表示されること" do
+      it "無効な情報で筋トレメニュー登録を行うと筋トレメニュー登録失敗のフラッシュが表示されること" do
         fill_in "メニュー名", with: ""
         fill_in "説明", with: "背中の筋肉を鍛えます。"
         fill_in "コツ・ポイント", with: "足をしっかり固定して行いましょう。"
         fill_in "参照用URL", with: "#"
         click_button "登録する"
         expect(page).to have_content "メニュー名を入力してください"
+      end
+    end
+
+    context "コメントの登録＆削除" do
+      it "自分の筋トレメニューに対するコメントの登録＆削除が正常に完了すること" do
+        login_for_system(user)
+        visit training_path(training)
+        fill_in "comment_content", with: "かなりきついです・・・"
+        click_button "コメント"
+        within find("#comment-#{Comment.last.id}") do
+          expect(page).to have_selector 'span', text: user.name
+          expect(page).to have_selector 'span', text: 'かなりきついです・・・'
+        end
+        expect(page).to have_content "コメントを追加しました！"
+        click_link "削除", href: comment_path(Comment.last)
+        expect(page).not_to have_selector 'span', text: 'かなりきついです・・・'
+        expect(page).to have_content "コメントを削除しました"
+      end
+
+      it "別ユーザーの筋トレメニューのコメントには削除リンクが無いこと" do
+        login_for_system(other_user)
+        visit training_path(training)
+        within find("#comment-#{comment.id}") do
+          expect(page).to have_selector 'span', text: user.name
+          expect(page).to have_selector 'span', text: comment.content
+          expect(page).not_to have_link '削除', href: training_path(training)
+        end
       end
     end
   end
