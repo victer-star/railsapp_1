@@ -8,6 +8,7 @@ ja:
           has_many: "%{record}が存在しているので削除できません"
     models:
       user: ユーザー
+      training: 筋トレメニュー
     attributes:
       user:
         id: ID
@@ -19,6 +20,14 @@ ja:
         gender: 性別
         created_at: 登録日時
         updated_at: 更新日時
+      training:
+        id: ID
+        name: メニュー名
+        description: 説明
+        tips: コツ・ポイント
+        reference: 参照用URL
+        popularity: 人気度
+        user_id: メニュー作成者のID
   date:
     abbr_day_names:
     - 日

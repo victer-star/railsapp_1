@@ -17,4 +17,15 @@
       <% end %>
     </div>
   </div>
+  <div class="row">
+    <div class="col-md-9">
+      <% if @user.trainings.any? %>
+        <h3>筋トレメニュー (<%= @user.trainings.count %>)</h3>
+        <ol class="trainings">
+          <%= render @trainings %>
+        </ol>
+        <%= will_paginate @trainings %>
+      <% end %>
+    </div>
+  </div>
 </div>

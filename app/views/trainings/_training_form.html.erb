@@ -1,0 +1,20 @@
+<%= form_with model: @training, local: true do |f| %>
+  <%= render 'shared/error_messages', object: f.object %>
+  <div class = 'form-group'>
+    <%= f.label :name %>　<span class="input-need">※必須</span>
+    <%= f.text_field :name, class: 'form-control', id: 'training_name' %>
+  </div>
+  <div class = 'form-group'>
+    <%= f.label :description %>　<span class="input-unneed">※任意</span>
+    <%= f.text_field :description, size: "60x4", class: 'form-control', id: 'training_description' %>
+  </div>
+  <div class = 'form-group'>
+    <%= f.label :tips %>　<span class="input-unneed">※任意</span>
+    <%= f.text_field :tips, size: "30x4", class: 'form-control', id: 'training_tips' %>
+  </div>
+  <div class = 'form-group'>
+    <%= f.label :reference %>　<span class="input-unneed">※任意</span>
+    <%= f.text_field :reference, class: 'form-control', id: 'training_reference' %>
+  </div>
+  <%= f.submit nil, class: 'btn btn-primary' %>
+<% end %>

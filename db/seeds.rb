@@ -13,3 +13,12 @@ User.create!(name:  name,
     password:              password,
     password_confirmation: password)
 end
+
+10.times do |n|
+  Training.create!(name: "No.#{n+1}の筋トレメニュー",
+                description: "胸や二の腕、背中のトレーニング種目です。",
+                tips: "辛いと感じる方は、膝を床につけて行ってみてください。",
+                reference: "#",
+                user_id: 1)
+end
+
