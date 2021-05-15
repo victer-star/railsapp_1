@@ -10,6 +10,9 @@ Rails.application.routes.draw do
   get    :favorites, to: 'favorites#index'
   post   "favorites/:training_id/create"  => "favorites#create"
   delete "favorites/:training_id/destroy" => "favorites#destroy"
+  get    :lists,     to: 'lists#index'
+  post   "lists/:training_id/create"  => "lists#create"
+  delete "lists/:list_id/destroy" => "lists#destroy"
   resources :users do
     member do
       get :following, :followers

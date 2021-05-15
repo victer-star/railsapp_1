@@ -1,0 +1,11 @@
+<% list = List.find_by(training_id: @training.id) %>
+<%= link_to "/lists/#{list.id}/destroy",
+            method: :delete,
+            class: 'unlist',
+            remote: true do %>
+  <% if current_user == @training.user %>
+    <div class="list-btn-unlist"><i class="fas fa-list-alt"></i> 筋トレリストに追加済み</div>
+  <% else %>
+    <div class="list-btn-unlist"><i class="fas fa-utensils"></i> 真似したいリクエスト済み</div>
+  <% end %>
+<% end %>
