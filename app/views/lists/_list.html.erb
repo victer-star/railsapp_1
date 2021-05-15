@@ -1,0 +1,28 @@
+<% @list = list %>
+<% @training = Training.find(list.training_id) %>
+<% user = User.find(list.from_user_id) %>
+<li id="list-<%= @training.id %>">
+  <div class="list-training">
+    <p><%= list.created_at.strftime("%Y/%m/%d(%a) %H:%M") %> </p>
+    <% if list.user_id == list.from_user_id %>
+      <p class="list-message">この筋トレメニューをリストに追加しました。</p>
+    <% else %>
+      <p class="list-message"><%= link_to user.name, user_path(user) %>さんがこの筋トレメニューに真似したいリクエストをしました。</p>
+    <% end %>
+  </div>
+  <div class="row">
+    <div class="col-md-2">
+      <%= link_to((image_tag @training.picture.url), training_path(@training), class: 'training-picture') %>
+    </div>
+    <div class="col-md-7">
+      <p><%= link_to @training.name, training_path(@training) %></p>
+      <p class="list-training-description"><%= @training.description %></p>
+    </div>
+    <div class="col-md-3">
+      <%= link_to "リストから削除", "/lists/#{list.id}/destroy",
+                              method: :delete,
+                              class: "unlist",
+                              data: { confirm: "本当にリストから削除しますか？" } %>
+    </div>
+  </div>
+</li>
