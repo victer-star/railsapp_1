@@ -1,4 +1,8 @@
 Rails.application.configure do
+
+  # プリコンパイルの有効化
+  config.assets.compile = true
+
   # Settings specified here will take precedence over those in config/application.rb.
 
   # Code is not reloaded between requests.

@@ -1,7 +1,12 @@
 class PictureUploader < CarrierWave::Uploader::Base
   include CarrierWave::MiniMagick
 
-  storage :file
+  if Rails.env.production?
+    storage :fog
+  else
+    storage :file
+  end
+  
   # storage :fog-aws
 
   def store_dir
