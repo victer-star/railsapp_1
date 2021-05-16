@@ -11,6 +11,12 @@ RSpec.describe "筋トレメニュー一覧ページ", type: :request do
       expect(response).to have_http_status "200"
       expect(response).to render_template('trainings/index')
     end
+
+    it "CSV出力がエラーなく行えること" do
+      login_for_request(user)
+      get trainings_path(format: :csv)
+      expect(response).to have_http_status "200"
+    end
   end
 
   context "ログインしていないユーザーの場合" do

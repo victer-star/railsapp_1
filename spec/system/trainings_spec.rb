@@ -244,4 +244,26 @@ RSpec.describe "Trainings", type: :system do
       end
     end
   end
+
+  describe "筋トレメニュー一覧ページ" do
+    context "CSV出力機能" do
+      before do
+        login_for_system(user)
+      end
+
+      it "トップページからCSV出力が行えること" do
+        visit root_path
+        click_link 'みんなの筋トレメニューをCSV出力'
+        expect(page.response_headers['Content-Disposition']).to \
+          include("みんなの筋トレ一覧_#{Time.current.strftime('%Y%m%d_%H%M')}.csv")
+      end
+
+      it "プロフィールページからCSV出力が行えること" do
+        visit user_path(user)
+        click_link 'みんなの筋トレメニューをCSV出力'
+        expect(page.response_headers['Content-Disposition']).to \
+          include("みんなの筋トレ一覧_#{Time.current.strftime('%Y%m%d_%H%M')}.csv")
+      end
+    end
+  end
 end
