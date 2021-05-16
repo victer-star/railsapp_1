@@ -1,0 +1,14 @@
+<% provide(:title, '筋トレメニュー一覧') %>
+<div id="fh5co-portfolio">
+  <div class="container">
+    <% if @search_word.present? %>
+      <h3>”<%= @search_word %>”の検索結果：<%= @trainings.count %>件</h3>
+    <% else %>
+      <h3>筋トレメニュー一覧</h3>
+    <% end %>
+    <ul class="trainings">
+      <%= render @trainings %>
+    </ul>
+    <%= will_paginate %>
+  </div>
+</div>
