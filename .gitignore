@@ -27,5 +27,6 @@
 /config/master.key
 
 # 以下のファイルをgit管理対象から無視
-/vendor
+/vendor/bundle
+/vendor/.keep
 /public/uploads/*

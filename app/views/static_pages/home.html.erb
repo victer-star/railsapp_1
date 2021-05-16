@@ -1,20 +1,34 @@
 <% if logged_in? %>
-  <div class="container">
-    <div class="row">
+  <div id="fh5co-portfolio">
+    <div class="container">
       <div class="col-md-9">
         <h3>みんなの筋トレメニュー (<%= @feed_items.count %>)</h3>
         <%= render 'shared/feed' %>
       </div>
       <div class="col-md-3">
-        <p><%= link_to "新しい筋トレメニューの登録", new_training_path, class: "btn btn-primary btn-lg btn-record" %></p>
-  	  </div>
+        <p><%= link_to "新しい筋トレメニューの登録", new_training_path, class: "btn btn-primary btn-lg btn-demo btn-record" %></p>
+        <br>
+        <p><%= link_to "みんなの筋トレをCSV出力", "#", class: "btn btn-primary btn-lg btn-demo btn-csv" %></p>
+      </div>
     </div>
   </div>
 <% else %>
-  <center>
-  　<h1>マッスルキングへようこそ！</h1>
-  　<h2>体を鍛えてきれいな肉体美を作り上げましょう！！</h2>
-    <p>みんなが投稿した筋トレメニューを参考にして体を作り上げよう！！</p>
-  　<p>自慢の肉体を投稿することもできる！！いいねの数でランキング上位を狙える！？</p>
-  </center>
+  <header id="fh5co-header" class="fh5co-cover js-fullheight" role="banner">
+    <div class="overlay"></div>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-8 col-md-offset-2 text-center">
+          <div class="display-t js-fullheight">
+            <div class="display-tc js-fullheight animate-box" data-animate-effect="fadeIn">
+              <h1>ユーザーが投稿した<br>筋トレメニューを保存しよう</h1>
+              <h2>自分オリジナルの筋トレメニューを作成！</h2>
+              <p>
+                <%= link_to 'マッスルキングを始める', signup_path, class: "btn btn-primary btn-lg btn-demo" %>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
 <% end %>
