@@ -8,7 +8,7 @@
       <div class="col-md-3">
         <p><%= link_to "新しい筋トレメニューの登録", new_training_path, class: "btn btn-primary btn-lg btn-demo btn-record" %></p>
         <br>
-        <p><%= link_to "みんなの筋トレをCSV出力", "#", class: "btn btn-primary btn-lg btn-demo btn-csv" %></p>
+        <p><%= link_to "みんなの筋トレメニューをCSV出力", trainings_path(format: :csv), class: "btn btn-primary btn-lg btn-demo btn-csv" %></p>
       </div>
     </div>
   </div>
@@ -22,9 +22,6 @@
             <div class="display-tc js-fullheight animate-box" data-animate-effect="fadeIn">
               <h1>ユーザーが投稿した<br>筋トレメニューを保存しよう</h1>
               <h2>自分オリジナルの筋トレメニューを作成！</h2>
-              <p>
-                <%= link_to 'マッスルキングを始める', signup_path, class: "btn btn-primary btn-lg btn-demo" %>
-              </p>
             </div>
           </div>
         </div>
