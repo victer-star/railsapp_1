@@ -5,9 +5,9 @@
   <div class="list-training">
     <p><%= list.created_at.strftime("%Y/%m/%d(%a) %H:%M") %> </p>
     <% if list.user_id == list.from_user_id %>
-      <p class="list-message">この筋トレメニューをリストに追加しました。</p>
+      <p class="list-message">このトレーニングをリストに追加しました。</p>
     <% else %>
-      <p class="list-message"><%= link_to user.name, user_path(user) %>さんがこの筋トレメニューに真似したいリクエストをしました。</p>
+      <p class="list-message"><%= link_to user.name, user_path(user) %>さんがこのトレーニングに真似したいリクエストをしました。</p>
     <% end %>
   </div>
   <div class="row">

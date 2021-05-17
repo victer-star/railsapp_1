@@ -1,4 +1,4 @@
-<% provide(:title, "筋トレメニューの編集") %>
+<% provide(:title, "トレーニング情報の編集") %>
 <div id="fh5co-portfolio">
   <div class="container">
     <div class="row">
@@ -30,7 +30,7 @@
           </div>
           <%= f.submit "更新する", class: "btn btn-primary" %>
           <p></p>
-          <%= link_to "筋トレメニューを削除する", training_path(@training), method: :delete,
+          <%= link_to "このトレーニングを削除する", training_path(@training), method: :delete,
                                       data: { confirm: "本当にこの筋トレメニューを削除してよろしいですか？" } %>
         <% end %>
       </div>

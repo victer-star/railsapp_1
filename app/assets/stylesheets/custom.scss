@@ -126,6 +126,160 @@ input {
   margin-left: 0;
  }
 
+//// マッスルキングとは？ページ ////
+// マッスルキングとは？
+.title-about {
+  padding: 0.5em;
+  background: #fef6f3 ;
+  border-left: solid 5px #F6A38B ;
+}
+
+// 主な使い方
+.title-use {
+  position: relative;
+  padding-left: 25px;
+  margin-top: 50px;
+}
+
+// 使い方A、B
+ol.main-use {
+  counter-reset:list;
+  list-style-type:none;
+  font: 14px/1.6 'arial narrow', sans-serif;
+  font-size: 18px;
+  padding: 1.5em 1.5em 0.5em 1.5em;
+}
+
+ol.main-use li {
+  position:relative;
+  line-height: 30px;
+  margin: 7px 0 10px 30px;
+  padding: 5px 0 5px 20px;
+  font-weight: bold;
+  background: #fef6f3 ;
+}
+
+ol.main-use li:before {
+  position: absolute;
+  left: -50px;
+  width: 40px;
+  height: 40px;
+  padding-top: 5px;
+  text-align: center;
+  color: #fff ;
+  background: #F6A38B ;
+  top: 50%;
+  -moz-transform: translateY(-50%);
+  -webkit-transform: translateY(-50%);
+  -o-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+}
+ol.main-use li.A:before {
+  content: "A";
+}
+ol.main-use li.B:before {
+  content: "B";
+}
+ol.main-use li:after {
+  content:"";
+  display: block;
+  position: absolute;
+  left: -10px;
+  height: 0;
+  width: 0;
+  border-top: 4px solid transparent;
+  border-bottom: 4px solid transparent;
+  border-left: 7px solid #F6A38B ;
+  top: 50%;
+  -moz-transform: translateY(-50%);
+  -webkit-transform: translateY(-50%);
+  -o-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+}
+
+// 中線
+.about-line {
+  border: dashed 1px #F6A38B ;
+  margin: 2em 0;
+}
+
+// 各種機能
+.title-use:before {
+  position: relative;
+  padding: 0.25em 0;
+}
+.title-use:after {
+  content: "";
+  display: block;
+  height: 4px;
+  background: -webkit-linear-gradient(to right, rgb(230, 90, 90), transparent);
+  background: linear-gradient(to right, rgb(230, 90, 90), transparent);
+}
+.use-content {
+  font-weight: bold;
+  margin-bottom: 30px;
+}
+ol.how-to-use {
+  counter-reset: list;
+  list-style-type: none;
+  font: 14px/1.6 'arial narrow', sans-serif;
+  padding:0;
+}
+ol.how-to-use li {
+  position:relative;
+  padding: 0 0 0 20px;
+  margin: 7px 0 7px 0px;
+  font-weight: bold;
+  font-size:17px;
+  line-height: 30px;
+  border-bottom: dashed 1px #F6A38B ;
+}
+ol.how-to-use li:before {
+  counter-increment: list;
+  content: "";
+  display: block;
+  position: absolute;
+  left: 0px;
+  height: 15px;
+  width: 15px;
+  border-radius: 50%;
+  background: #F6A38B ;
+  top: 50%;
+  -moz-transform: translateY(-50%);
+  -webkit-transform: translateY(-50%);
+  -o-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+}
+ol.how-to-use li:after {
+  content: "";
+  display: block;
+  position: absolute;
+  left: 6px;
+  height: 0;
+  width: 0;
+  border-top: 4px solid transparent;
+  border-bottom: 4px solid transparent;
+  border-left: 5px solid #fff ;
+  top: 50%;
+  -moz-transform: translateY(-50%);
+  -webkit-transform: translateY(-50%);
+  -o-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+}
+.use-explanation {
+  margin-left: 30px;
+}
+img.use-picture {
+  max-width: 100%;
+  height: auto;
+  box-sizing: border-box;
+  margin-bottom: 30px;
+}
+
  //// プロフィールページ ////
 .title-profile {
   padding-bottom: 10px;
