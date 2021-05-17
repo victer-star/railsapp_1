@@ -137,19 +137,20 @@ RSpec.describe "Users", type: :system do
         expect(page).to have_link 'プロフィール編集', href: edit_user_path(user)
       end
 
-      it "筋トレメニューの件数が表示されていることを確認" do
-        expect(page).to have_content "筋トレメニュー (#{user.trainings.count})"
+      it "トレーニングの件数が表示されていることを確認" do
+        expect(page).to have_content "トレーニング (#{user.trainings.count})"
       end
 
-      it "筋トレメニューの情報が表示されていることを確認" do
+      it "トレーニングの情報が表示されていることを確認" do
         Training.take(3).each do |training|
           expect(page).to have_link training.name
           expect(page).to have_content training.description
           expect(page).to have_content training.user.name
+          expect(page).to have_content training.popularity
         end
       end
 
-      it "筋トレメニューのページネーションが表示されていることを確認" do
+      it "トレーニングのページネーションが表示されていることを確認" do
         expect(page).to have_css "div.pagination"
       end
     end
@@ -195,7 +196,7 @@ RSpec.describe "Users", type: :system do
       #   expect(link[:href]).to include "/favorites/#{training.id}/create"
       # end
 
-      # it "筋トレメニュー個別ページからお気に入り登録/解除ができること", js: true do
+      # it "トレーニング個別ページからお気に入り登録/解除ができること", js: true do
       #   visit training_path(training)
       #   link = find('.like')
       #   expect(link[:href]).to include "/favorites/#{training.id}/create"
@@ -207,7 +208,7 @@ RSpec.describe "Users", type: :system do
       #   expect(link[:href]).to include "/favorites/#{training.id}/create"
       # end
 
-      it "筋トレメニューのお気に入り登録/解除ができること" do
+      it "トレーニングのお気に入り登録/解除ができること" do
         expect(user.favorite?(training)).to be_falsey
         user.favorite(training)
         expect(user.favorite?(training)).to be_truthy
@@ -242,7 +243,7 @@ RSpec.describe "Users", type: :system do
         login_for_system(user)
       end
 
-      context "自分以外のユーザーの筋トレメニューに対して" do
+      context "自分以外のユーザーのトレーニングに対して" do
         before do
           visit training_path(other_training)
         end
@@ -256,7 +257,7 @@ RSpec.describe "Users", type: :system do
           expect(page).to have_css 'li.new_notification'
           visit notifications_path
           expect(page).to have_css 'li.no_notification'
-          expect(page).to have_content "あなたの筋トレメニューが#{user.name}さんにお気に入り登録されました。"
+          expect(page).to have_content "あなたのトレーニングが#{user.name}さんにお気に入り登録されました。"
           expect(page).to have_content other_training.name
           expect(page).to have_content other_training.description
           expect(page).to have_content other_training.created_at.strftime("%Y/%m/%d(%a) %H:%M")
@@ -271,7 +272,7 @@ RSpec.describe "Users", type: :system do
           expect(page).to have_css 'li.new_notification'
           visit notifications_path
           expect(page).to have_css 'li.no_notification'
-          expect(page).to have_content "あなたの筋トレメニューに#{user.name}さんがコメントしました。"
+          expect(page).to have_content "あなたのトレーニングに#{user.name}さんがコメントしました。"
           expect(page).to have_content '「コメントしました」'
           expect(page).to have_content other_training.name
           expect(page).to have_content other_training.description
@@ -279,7 +280,7 @@ RSpec.describe "Users", type: :system do
         end
       end
 
-      context "自分の筋トレメニューに対して" do
+      context "自分のトレーニングに対して" do
         before do
           visit training_path(training)
         end
@@ -363,18 +364,16 @@ RSpec.describe "Users", type: :system do
       expect(page).not_to have_css ".list-training"
       user.list(training)
       training_2 = create(:training, user: user)
-      other_user.list(training_2)
+      user.list(training_2)
       visit lists_path
       expect(page).to have_css ".list-training", count: 2
       expect(page).to have_content training.name
       expect(page).to have_content training.description
       expect(page).to have_content List.last.created_at.strftime("%Y/%m/%d(%a) %H:%M")
-      expect(page).to have_content "この筋トレメニューをリストに追加しました。"
+      expect(page).to have_content "このトレーニングをリストに追加しました。"
       expect(page).to have_content training_2.name
       expect(page).to have_content training_2.description
       expect(page).to have_content List.first.created_at.strftime("%Y/%m/%d(%a) %H:%M")
-      expect(page).to have_content "#{other_user.name}さんがこの筋トレメニューに真似したいリクエストをしました。"
-      expect(page).to have_link other_user.name, href: user_path(other_user)
       user.unlist(List.first)
       visit lists_path
       expect(page).to have_css ".list-training", count: 1

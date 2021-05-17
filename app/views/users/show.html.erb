@@ -34,7 +34,7 @@
     <div class="row">
       <div class="col-md-9">
         <% if @user.trainings.any? %>
-          <h3>筋トレメニュー (<%= @user.trainings.count %>)</h3>
+          <h3>トレーニング (<%= @user.trainings.count %>)</h3>
           <ol class="trainings">
             <%= render @trainings %>
           </ol>
@@ -42,9 +42,9 @@
         <% end %>
       </div>
       <div class="col-md-3">
-        <p><%= link_to "新しい筋トレメニューの登録", training_path, class: "btn btn-primary btn-lg btn-demo btn-record" %></p>
+        <p><%= link_to "新しいトレーニングの登録", new_training_path, class: "btn btn-primary btn-lg btn-demo btn-record" %></p>
         <br>
-        <p><%= link_to "みんなの筋トレメニューをCSV出力", trainings_path(format: :csv), class: "btn btn-primary btn-lg btn-demo btn-csv" %></p>
+        <p><%= link_to "みんなのトレーニングをCSV出力", trainings_path(format: :csv), class: "btn btn-primary btn-lg btn-demo btn-csv" %></p>
       </div>
     </div>
   </div>

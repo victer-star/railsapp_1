@@ -25,6 +25,7 @@ RSpec.describe "筋トレメニューの登録", type: :request do
                                                     description: "背中の筋肉を鍛えます。",
                                                     tips: "足をしっかり固定して行いましょう。",
                                                     reference: "#",
+                                                    popularity: 5,
                                                     picture: picture } }
       }.to change(Training, :count).by(1)
       follow_redirect!
@@ -37,6 +38,7 @@ RSpec.describe "筋トレメニューの登録", type: :request do
                                                     description: "背中の筋肉を鍛えます。",
                                                     tips: "足をしっかり固定して行いましょう。",
                                                     reference: "#",
+                                                    popularity: 5,
                                                     picture: picture } }
       }.not_to change(Training, :count)
       expect(response).to render_template('trainings/new')

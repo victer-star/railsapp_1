@@ -2,13 +2,13 @@
   <div id="fh5co-portfolio">
     <div class="container">
       <div class="col-md-9">
-        <h3>みんなの筋トレメニュー (<%= @feed_items.count %>)</h3>
-        <%= render 'shared/feed' %>
+        <h3>みんなの筋トレ (<%= @muscle_items.count %>)</h3>
+        <%= render 'shared/muscle' %>
       </div>
       <div class="col-md-3">
-        <p><%= link_to "新しい筋トレメニューの登録", new_training_path, class: "btn btn-primary btn-lg btn-demo btn-record" %></p>
+        <p><%= link_to "新しいトレーニングの登録", new_training_path, class: "btn btn-primary btn-lg btn-demo btn-record" %></p>
         <br>
-        <p><%= link_to "みんなの筋トレメニューをCSV出力", trainings_path(format: :csv), class: "btn btn-primary btn-lg btn-demo btn-csv" %></p>
+        <p><%= link_to "みんなのトレーニングをCSV出力", trainings_path(format: :csv), class: "btn btn-primary btn-lg btn-demo btn-csv" %></p>
       </div>
     </div>
   </div>
@@ -20,8 +20,11 @@
         <div class="col-md-8 col-md-offset-2 text-center">
           <div class="display-t js-fullheight">
             <div class="display-tc js-fullheight animate-box" data-animate-effect="fadeIn">
-              <h1>ユーザーが投稿した<br>筋トレメニューを保存しよう</h1>
+              <h1>ユーザーが投稿した<br>トレーニングを保存しよう！</h1>
               <h2>自分オリジナルの筋トレメニューを作成！</h2>
+              <p>
+                <%= link_to 'マッスルキングを始める', signup_path, class: "btn btn-primary btn-lg btn-demo" %>
+              </p>
             </div>
           </div>
         </div>

@@ -53,8 +53,8 @@ end
     update_attribute(:remember_digest, nil)
   end
 
-  # ユーザーのステータスフィードを返す
-  def feed
+  # ユーザーのステータスを返す
+  def muscle
     following_ids = "SELECT followed_id FROM relationships
                       WHERE follower_id = :user_id"
     Training.where("user_id IN (#{following_ids})
@@ -81,12 +81,12 @@ end
     followers.include?(other_user)
   end
 
-  # 料理をお気に入りに登録する
+  # トレーニングをお気に入りに登録する
   def favorite(training)
     Favorite.create!(user_id: id, training_id: training.id)
   end
 
-  # 料理をお気に入り解除する
+  # トレーニングをお気に入り解除する
   def unfavorite(training)
     Favorite.find_by(user_id: id, training_id: training.id).destroy
   end
@@ -96,19 +96,19 @@ end
     !Favorite.find_by(user_id: id, training_id: training.id).nil?
   end
 
-   # 料理をリストに登録する
+   # トレーニングをリストに登録する
    def list(training)
-    List.create!(user_id: training.user_id, training_id: training.id, from_user_id: id)
+    List.create!(user_id: id, training_id: training.id)
   end
 
-  # 料理をリストから解除する
+  # トレーニングをリストから解除する
   def unlist(list)
     list.destroy
   end
 
   # 現在のユーザーがリスト登録してたらtrueを返す
   def list?(training)
-    !List.find_by(training_id: training.id, from_user_id: id).nil?
+    !List.find_by(user_id: id, training_id: training.id).nil?
   end
 
 
