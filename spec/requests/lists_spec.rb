@@ -33,19 +33,19 @@ RSpec.describe "リスト登録機能", type: :request do
       it "筋トレリスト登録/解除ができること" do
         expect {
           post "/lists/#{training.id}/create"
-        }.to change(other_user.lists, :count).by(1)
+        }.to change(user.lists, :count).by(1)
         expect {
           delete "/lists/#{List.first.id}/destroy"
-        }.to change(other_user.lists, :count).by(-1)
+        }.to change(user.lists, :count).by(-1)
       end
 
       it "筋トレのAjaxによるリスト登録/解除ができること" do
         expect {
           post "/lists/#{training.id}/create", xhr: true
-        }.to change(other_user.lists, :count).by(1)
+        }.to change(user.lists, :count).by(1)
         expect {
           delete "/lists/#{List.first.id}/destroy", xhr: true
-        }.to change(other_user.lists, :count).by(-1)
+        }.to change(user.lists, :count).by(-1)
       end
     end
 

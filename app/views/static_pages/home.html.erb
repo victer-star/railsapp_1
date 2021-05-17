@@ -2,8 +2,8 @@
   <div id="fh5co-portfolio">
     <div class="container">
       <div class="col-md-9">
-        <h3>みんなの筋トレ (<%= @feed_items.count %>)</h3>
-        <%= render 'shared/feed' %>
+        <h3>みんなの筋トレ (<%= @muscle_items.count %>)</h3>
+        <%= render 'shared/muscle' %>
       </div>
       <div class="col-md-3">
         <p><%= link_to "新しいトレーニングの登録", new_training_path, class: "btn btn-primary btn-lg btn-demo btn-record" %></p>

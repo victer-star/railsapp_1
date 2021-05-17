@@ -11,8 +11,8 @@ class Training < ApplicationRecord
   validates :description, length: { maximum: 140 }
   validate  :picture_size
 
-  # 料理に付属するコメントのフィードを作成
-  def feed_comment(training_id)
+  # トレーニングに付属するコメントのフィードを作成
+  def training_comment(training_id)
     Comment.where("training_id = ?", training_id)
   end
 

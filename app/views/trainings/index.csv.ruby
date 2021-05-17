@@ -6,7 +6,7 @@ CSV.generate do |csv|
                          コツ・ポイント 最初に作った日時)
   csv << csv_column_labels
   # 各筋トレメニューのカラム値を追加
-  current_user.feed.each do |training|
+  current_user.muscle.each do |training|
     csv_column_values = [
       training.name,
       training.description,

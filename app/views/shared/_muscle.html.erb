@@ -1,0 +1,6 @@
+<% if @muscle_items.any? %>
+  <ol class="trainings">
+    <%= render @muscle_items %>
+  </ol>
+  <%= will_paginate @muscle_items %>
+<% end %>

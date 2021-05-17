@@ -4,10 +4,10 @@
   <div>
     <% if notification.variety == 1 %>
       <p><%= notification.created_at.strftime("%Y/%m/%d(%a) %H:%M") %></p>
-      <p class="notification-message">あなたの筋トレメニューが<%= link_to user.name, user_path(user) %>さんにお気に入り登録されました。</p>
+      <p class="notification-message">あなたのトレーニングが<%= link_to user.name, user_path(user) %>さんにお気に入り登録されました。</p>
     <% elsif notification.variety == 2 %>
       <p><%= notification.created_at.strftime("%Y/%m/%d(%a) %H:%M") %></p>
-      <p class="notification-message">あなたの筋トレメニューに<%= link_to user.name, user_path(user) %>さんがコメントしました。
+      <p class="notification-message">あなたのトレーニングに<%= link_to user.name, user_path(user) %>さんがコメントしました。
       「<%= notification.content %>」</p>
     <% end %>
   </div>

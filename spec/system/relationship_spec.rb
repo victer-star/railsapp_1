@@ -89,15 +89,15 @@ RSpec.describe "Relationships", type: :system do
     end
 
     it "フィードに自分の投稿が含まれていること" do
-      expect(user.feed).to include training
+      expect(user.muscle).to include training
     end
 
     it "フィードにフォロー中ユーザーの投稿が含まれていること" do
-      expect(user.feed).to include training2
+      expect(user.muscle).to include training2
     end
 
     it "フィードにフォローしていないユーザーの投稿が含まれていないこと" do
-      expect(user.feed).not_to include training3
+      expect(user.muscle).not_to include training3
     end
   end
 end
