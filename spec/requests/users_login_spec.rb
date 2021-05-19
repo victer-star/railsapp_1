@@ -39,7 +39,7 @@ RSpec.describe "永続セッション機能", type: :request do
       delete logout_path
       expect(response).to redirect_to root_path
       expect(session[:user_id]).to eq nil
-      # 2番目のウィンドウでログアウトする
+      # 2番目のウィンド
       delete logout_path
       expect(response).to redirect_to root_path
       expect(session[:user_id]).to eq nil

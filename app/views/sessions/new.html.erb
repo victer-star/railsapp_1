@@ -4,7 +4,7 @@
     <h1>ログイン</h1>
     <div class="row">
       <div class="col-md-6 col-md-offset-3">
-        <%= form_for(:session, url: login_path, local: true) do |f| %>
+        <%= form_with(url: login_path, scope: :session, local: true) do |f| %>
           <div class = 'form-group'>
             <%= f.label 'メールアドレス' %>
             <%= f.email_field :email, class: 'form-control', id: 'user_email' %>
@@ -22,7 +22,7 @@
           <%= f.submit 'ログイン', class: 'btn btn-primary' %>
         <% end %>
         <br>新規登録されていない方は<%= link_to 'こちら', signup_path %><br>
-        パスワードをお忘れの方は<%= link_to 'こちら', '#' %>
+        パスワードをお忘れの方は<%= link_to 'こちら', new_password_reset_path %>
       </div>
     </div>
   </div>

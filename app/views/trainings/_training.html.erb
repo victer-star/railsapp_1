@@ -11,7 +11,6 @@
     <div class="col-md-8 escape-float">
       <h3 class="training-name"><%= link_to training.name, training_path(training) %></h3>
       <div class="training-description"><%= training.description %></div>
-      <div class="training-popularity">人気度：<%= training.popularity %></div><br>
       <div class="training-user">作成者 <%= link_to training.user.name, user_path(training.user) %></div>
       <div class="row">
         <div class="col-md-6">
