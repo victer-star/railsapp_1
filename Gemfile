@@ -33,6 +33,7 @@ gem 'bootstrap-will_paginate', '1.0.0'
 gem 'carrierwave',             '1.2.2'
 gem "mini_magick",             '>= 4.9.4'
 gem 'ransack'
+gem "mailcatcher"
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
@@ -41,7 +42,6 @@ group :development, :test do
   gem 'rails-controller-testing'
   gem 'rubocop-airbnb'
   gem "factory_bot_rails", "~> 4.10.0"
-  gem 'letter_opener'
 end
 
 group :development do

@@ -27,3 +27,9 @@ services:
     image: selenium/standalone-chrome@sha256:4a590fc95d67a8eb13464799583991daa6a8548c9a9e2e7f234a92c9c4fa8f29   #Chromeがインストールされたイメージ
     ports:
       - "4444:4444"
+
+  smtp:
+    image: schickling/mailcatcher
+    ports:
+      - "1080:1080"
+      - "1025:1025"

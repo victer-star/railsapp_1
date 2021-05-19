@@ -1,6 +1,5 @@
 class PasswordResetsController < ApplicationController
   before_action :get_user,   only: [:edit, :update]
-  before_action :check_expiration, only: [:edit, :update]
 
   def new
   end
@@ -42,14 +41,6 @@ class PasswordResetsController < ApplicationController
 
     def get_user
       @user = User.find_by(email: params[:email])
-    end
-
-    # トークンが期限切れかどうか確認する
-    def check_expiration
-      if @user.password_reset_expired?
-        flash[:danger] = "パスワード再設定が期限切れです。"
-        redirect_to new_password_reset_url
-      end
     end
 
 end
