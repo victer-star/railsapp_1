@@ -33,6 +33,7 @@ gem 'bootstrap-will_paginate', '1.0.0'
 gem 'carrierwave',             '1.2.2'
 gem "mini_magick",             '>= 4.9.4'
 gem 'ransack'
+gem "mailcatcher"
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
@@ -56,7 +57,6 @@ end
 group :test do
   # Adds support for Capybara system testing and selenium driver
   gem 'capybara', '>= 2.15'
-  gem 'selenium-webdriver'
   # Easy installation and use of chromedriver to run system tests with Chrome
   gem 'webdrivers', require: !ENV['SELENIUM_DRIVER_URL']
 end

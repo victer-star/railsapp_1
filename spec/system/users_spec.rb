@@ -146,7 +146,6 @@ RSpec.describe "Users", type: :system do
           expect(page).to have_link training.name
           expect(page).to have_content training.description
           expect(page).to have_content training.user.name
-          expect(page).to have_content training.popularity
         end
       end
 

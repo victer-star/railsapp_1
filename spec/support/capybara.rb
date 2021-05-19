@@ -13,6 +13,8 @@ Capybara.register_driver :remote_chrome do |app|
   Capybara::Selenium::Driver.new(app, browser: :remote, url: url, desired_capabilities: caps)
 end
 
+Capybara.javascript_driver = :selenium_chrome_headless
+
 RSpec.configure do |config|
   config.before(:each, type: :system) do
     driven_by :rack_test
