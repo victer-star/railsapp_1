@@ -1,3 +1,4 @@
+<% provide(:title, "お気に入り") %>
 <% @training = Training.find(favorite.training_id) %>
 <% user = @training.user %>
 <li id="favorite-<%= favorite.id %>">

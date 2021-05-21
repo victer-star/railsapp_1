@@ -1,0 +1,33 @@
+<% provide(:title, "トレーニング記録の編集") %>
+<div id="fh5co-portfolio">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6 col-md-offset-3">
+        <%= form_with(model: @record, local: true) do |f| %>
+          <%= render 'shared/error_messages', object: f.object %>
+          <div class = 'form-group'>
+            <%= f.label :menu %>　<span class="input-need">※必須</span>
+            <%= f.text_field :menu, id: 'record_menu' %>
+          </div>
+          <div class = 'form-group'>
+            <%= f.label :weight %>　<span class="input-unneed">※任意</span>
+            <%= f.select :weight, [*(0..200)], id: 'record_weight' %>
+          </div>
+          <div class = 'form-group'>
+            <%= f.label :rep %>　<span class="input-unneed">※任意</span>
+            <%= f.select :rep, [*(1..100)], id: 'record_rep' %>
+          </div>
+          <div class = 'form-group'>
+            <%= f.label :set %>　<span class="input-unneed">※任意</span>
+            <%= f.select :set, [*(1..30)], id: 'record_set' %>
+          </div>
+          <div class = 'form-group'>
+            <%= f.label :start_time %>　<span class="input-unneed">※任意</span>
+            <%= f.date_field  :start_time, id: 'record_start_time' %>
+          </div>
+          <%= f.submit "更新する", class: "btn btn-primary" %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

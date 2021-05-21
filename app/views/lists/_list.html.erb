@@ -1,3 +1,4 @@
+<% provide(:title, "マイ筋トレリスト") %>
 <% @list = list %>
 <% @training = Training.find(list.training_id) %>
 <li id="list-<%= @training.id %>">

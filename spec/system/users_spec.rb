@@ -6,6 +6,7 @@ RSpec.describe "Users", type: :system do
   let!(:other_user) { create(:user) }
   let!(:training) { create(:training, user: user) }
   let!(:other_training) { create(:training, user: other_user) }
+  let!(:record) { create(:record, user: user) }
 
   describe "ユーザー一覧ページ" do
     context "管理者ユーザーの場合" do
@@ -315,7 +316,7 @@ RSpec.describe "Users", type: :system do
       login_for_system(user)
     end
 
-    it "筋トレのお気に入り登録/解除ができること" do
+    it "筋トレのリスト登録/解除ができること" do
       expect(user.list?(training)).to be_falsey
       user.list(training)
       expect(user.list?(training)).to be_truthy
@@ -380,6 +381,75 @@ RSpec.describe "Users", type: :system do
       find('.unlist').click
       visit lists_path
       expect(page).not_to have_css ".list-training"
+    end
+  end
+
+  describe "トレーニング記録ページ" do
+    before do
+      login_for_system(user)
+      visit records_path
+    end
+
+    context "ページレイアウト" do
+      it "正しいタイトルが表示されることを確認" do
+        expect(page).to have_title full_title('トレーニング記録カレンダー')
+      end
+    end
+
+    it "有効なトレーニング記録を行うと、更新成功のフラッシュが表示される" do
+      fill_in "トレーニング名　※必須",   with: "背筋"
+      select '30',             from: '重量(kg) ※任意'
+      select '30',             from: '回数　※任意'
+      select '30',             from: 'セット数　※任意'
+      fill_in'record_start_time', with: '002020-10-06'
+      click_button "記録する"
+      expect(page).to have_content "トレーニングを記録しました"
+    end
+  end
+
+  describe "トレーニング記録編集ページ" do
+    before do
+      login_for_system(user)
+      visit records_path
+      click_link '編集'
+    end
+
+    context "ページレイアウト" do
+      it "正しいタイトルが表示されること" do
+        expect(page).to have_title full_title('トレーニング記録の編集')
+      end
+
+      it "入力部分に適切なラベルが表示されること" do
+        expect(page).to have_content 'トレーニング名　※必須'
+        expect(page).to have_content '重量　※任意'
+        expect(page).to have_content '回数　※任意'
+        expect(page).to have_content 'セット数　※任意'
+        expect(page).to have_content 'トレーニング日　※任意'
+      end
+    end
+
+    context "トレーニング記録の更新処理" do
+      it "有効な更新" do
+        fill_in "record_menu",   with: "ハードな懸垂"
+        select '30',             from: 'record_weight'
+        select '30',             from: 'record_rep'
+        select '30',             from: 'record_set'
+        fill_in'record_start_time', with: '002020-10-28'
+        click_button "更新する"
+        expect(page).to have_content "トレーニング記録を更新しました"
+        expect(record.reload.menu).to eq "ハードな懸垂"
+        expect(record.reload.weight).to eq 30
+        expect(record.reload.rep).to eq 30
+        expect(record.reload.set).to eq 30
+        expect(record.reload.start_time).to eq "2020-10-28 00:00:00.000000000 +0900"
+      end
+
+      it "無効な更新" do
+        fill_in "record_menu", with: ""
+        click_button "更新する"
+        expect(page).to have_content "トレーニング名を入力してください"
+        expect(record.reload.menu).not_to eq ""
+      end
     end
   end
 end
