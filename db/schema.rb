@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_05_19_085317) do
+ActiveRecord::Schema.define(version: 2021_05_20_034029) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -50,6 +50,18 @@ ActiveRecord::Schema.define(version: 2021_05_19_085317) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_notifications_on_user_id"
+  end
+
+  create_table "records", force: :cascade do |t|
+    t.integer "user_id"
+    t.string "menu"
+    t.integer "set"
+    t.integer "weight"
+    t.integer "rep"
+    t.datetime "start_time"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_records_on_user_id"
   end
 
   create_table "relationships", force: :cascade do |t|

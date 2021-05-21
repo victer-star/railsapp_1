@@ -11,6 +11,7 @@ class User < ApplicationRecord
   has_many :favorites, dependent: :destroy
   has_many :notifications, dependent: :destroy
   has_many :lists, dependent: :destroy
+  has_many :records, dependent: :destroy
   attr_accessor :remember_token, :reset_token
   before_save :downcase_email
   validates :name, presence: true, length: { maximum: 50 }
@@ -96,8 +97,8 @@ end
     !Favorite.find_by(user_id: id, training_id: training.id).nil?
   end
 
-   # トレーニングをリストに登録する
-   def list(training)
+  # トレーニングをリストに登録する
+  def list(training)
     List.create!(user_id: id, training_id: training.id)
   end
 

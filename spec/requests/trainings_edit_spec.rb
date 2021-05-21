@@ -25,12 +25,10 @@ RSpec.describe "筋トレメニュー編集", type: :request do
 
   context "ログインしていないユーザーの場合" do
     it "ログイン画面にリダイレクトすること" do
-      # 編集
       get edit_training_path(training)
       expect(response).to have_http_status "302"
       expect(response).to redirect_to login_path
-      # 更新
-     patch training_path(training), params: { training: { name: "背筋",
+      patch training_path(training), params: { training: { name: "背筋",
                                                           description: "背中の筋肉を鍛えます。",
                                                           tips: "足をしっかり固定して行いましょう。",
                                                           reference: "#" } }

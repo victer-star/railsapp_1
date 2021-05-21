@@ -1,0 +1,62 @@
+<% provide(:title, 'トレーニング記録カレンダー') %>
+<div class="container-fluid">
+	<h2 class="section-top"><span class="fas fa-dumbbell" aria-hidden="true"></span> トレーニング記録カレンダー</h2>
+	<div class="col-md-3 col-sm-12 col-xs-12">
+    <%= form_for(@record) do |f| %>
+    <%= render 'shared/error_messages', object: f.object %>
+    <div class="field row">
+      <label for="record_menu">トレーニング名　※必須</label>
+      <p><%= f.text_field :menu, id: 'record_menu' %></p>
+      <label for="record_weight">重量(kg) ※任意</label>
+      <p><%= f.select :weight, [*(0..200)], id: 'record_weight' %></p>
+      <label for="record_rep">回数　※任意</label>
+      <p><%= f.select :rep, [*(1..100)], id: 'record_rep' %></p>
+      <label for="record_set">セット数　※任意</label>
+      <p><%= f.select :set, [*(1..30)], id: 'record_set' %></p>
+      <label for="record_start_time">トレーニング日　※任意</label>
+      <p><%= f.date_field :start_time, id: 'record_start_time' %></p>
+    </div>
+    <div class="actions row">
+      <%= f.submit "記録する", class: "btn btn-sm btn-hachiss" %>
+    </div>
+  <% end %>
+</div>
+
+<div class="col-md-9 col-sm-12 col-xs-12">
+		<%= month_calendar events: @records do |date, records| %>
+		  <%= date.day %>
+		  <% records.each do |record| %>
+		    <div>
+		      <%= link_to record.menu, edit_record_path(record) %>
+		    </div>
+		  <% end %>
+		<% end %>
+		<table class="record table table-bordered", id="record_index">
+			<thead>
+				<tr>
+					<th>トレーニング名</th>
+					<th>重量</th>
+					<th>回数</th>
+					<th>セット数</th>
+					<th>トレーニング日</th>
+					<th></th>
+					<th></th>
+				</tr>
+		  </thead>
+			<% @records.each do |user| %>
+				<tbody>
+					<tr>
+						<td><%= user.menu%></td>
+						<td><%= user.weight%>kg</td>
+						<td><%= user.rep%>rep</td>
+						<td><%= user.set%>set</td>
+						<td><%= user.start_time.strftime("%Y-%m-%d %H:%M")%></td>
+						<td><%=link_to "編集" , edit_record_path(user),:class=>"btn04"  %></td>
+						<td><%=link_to "削除",record_path(user) , method: :delete , data: {confirm:"削除しますか"} ,:class=>"btn03"%></td>
+					</tr>
+				</tbody>
+			<% end %>
+  		</table>
+  		<%= will_paginate @records, previous_label: '&lt 前へ', next_label: '次へ &gt' %>
+ 	</div>
+</div>

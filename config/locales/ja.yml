@@ -1,5 +1,9 @@
 ja:
   activerecord:
+    views:
+      pagination:
+        Previous Label: '前'
+        Next Label: '次'
     errors:
       messages:
         record_invalid: 'バリデーションに失敗しました: %{errors}'
@@ -34,6 +38,12 @@ ja:
         user_id: コメント投稿者のID
         training_id: コメントされた筋トレメニューのID
         content: コメント
+      record:
+        menu: トレーニング名
+        weight: 重量
+        rep: 回数
+        set: セット数
+        start_time: トレーニング日
   date:
     abbr_day_names:
     - 日
@@ -232,3 +242,6 @@ ja:
       long: "%Y/%m/%d %H:%M"
       short: "%m/%d %H:%M"
     pm: 午後
+  will_paginate:
+    previous_label: ←前
+    next_label: 次→
