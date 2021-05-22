@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-  get 'likes/index'
   get 'notifications/index'
   root 'static_pages#home'
   get :about,        to: 'static_pages#about'
@@ -16,7 +15,7 @@ Rails.application.routes.draw do
   delete "lists/:list_id/destroy" => "lists#destroy"
   get   :likes,      to: 'likes#index'
   post   "likes/:training_id/create" => "likes#create"
-  delete "likes/:like_id" => "likes#destroy"
+  delete "likes/:like_id/destroy" => "likes#destroy"
   resources :users do
     member do
       get :following, :followers

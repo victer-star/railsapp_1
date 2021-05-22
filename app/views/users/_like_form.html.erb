@@ -1,4 +1,4 @@
-<div id="like-<%= @training.id %>" class="good-button">
+<div id="like-<%= @training.id %>" class="like-button">
   <% if !current_user.nil? && current_user.already_liked?(@training) %>
     <%= render 'users/unlike' %>
   <% else %>

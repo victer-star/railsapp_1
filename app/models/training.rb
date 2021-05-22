@@ -18,6 +18,11 @@ class Training < ApplicationRecord
     Comment.where("training_id = ?", training_id)
   end
 
+  # トレーニングいいねランキングのメソッド
+  def self.create_all_ranks
+    Training.find(Like.group(:training_id).order('count(training_id) desc').limit(5).pluck(:training_id))
+  end
+
   private
 
     # アップロードされた画像のサイズを制限する

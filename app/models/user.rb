@@ -130,6 +130,11 @@ end
     Like.create!(user_id: id, training_id: training.id)
   end
 
+  # トレーニングをリストから解除する
+  def unlike(like)
+    like.destroy
+  end
+
   # すでにいいねしているか判断する
   def already_liked?(training)
     !Like.find_by(user_id: id, training_id: training.id).nil?

@@ -9,7 +9,7 @@ RSpec.describe Like, type: :model do
 
   it "user_idがnilの場合、無効であること"do
     like.user_id = nil
-    expect(like).not_to ba_valid
+    expect(like).not_to be_valid
   end
 
   it "training_idがnilの場合、無効であること" do

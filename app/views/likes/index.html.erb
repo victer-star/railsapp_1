@@ -1,2 +1,40 @@
-<h1>Likes#index</h1>
-<p>Find me in app/views/likes/index.html.erb</p>
+<% provide(:title, "いいねランキング") %>
+<div id="fh5co-portfolio">
+  <h2 class="section-top"><span class="fas fa-thumbs-up" aria-hidden="true"></span> いいねランキング</h2>
+  <div class="container">
+    <%= @all_ranks.each.with_index(1) do |training, i| %>
+      <li id="training-<%= training.id %>">
+        <ul class="trainings">
+          <div class="row">
+            <div class="col-md-4">
+              <span>
+                <%= link_to((image_tag training.picture.thumb200.url), training_path(training.id), class: 'training-picture') if training.picture.url.present? %>
+              </span>
+            </div>
+            <div class="col-md-8 escape-float">
+              <h3 class="training-name"><%= link_to training.name, training_path(training) %></h3>
+              <div class="training-description"><%= training.description %></div>
+              <div class="training-user">作成者 <%= link_to training.user.name, user_path(training.user) %></div>
+                <div class="row">
+                  <div class="col-md-6">
+                    <div class="training-created-at">
+                      <%= time_ago_in_words(training.created_at) %>前に投稿
+                    </div>
+                    <% @training = training%>
+                    <div id="like-<%= @training.id %>" class="like-button">
+                      <% if !current_user.nil? && current_user.already_liked?(@training) %>
+                        <%= render 'users/unlike' %>
+                      <% else %>
+                        <%= render 'users/like' %>
+                      <% end %>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </ul>
+        </li>
+      <% end %>
+    </div>
+  </div>
+</div>

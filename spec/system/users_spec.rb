@@ -249,7 +249,7 @@ RSpec.describe "Users", type: :system do
         end
 
         it "お気に入り登録によって通知が作成されること" do
-          find('.like').click
+          find('.favorite').click
           visit training_path(other_training)
           expect(page).to have_css 'li.no_notification'
           logout
@@ -397,17 +397,17 @@ RSpec.describe "Users", type: :system do
     end
 
     it "有効なトレーニング記録を行うと、更新成功のフラッシュが表示される" do
-      fill_in "トレーニング名　※必須",   with: "背筋"
-      select '30',             from: '重量(kg) ※任意'
-      select '30',             from: '回数　※任意'
-      select '30',             from: 'セット数　※任意'
+      fill_in "record_menu",   with: "背筋"
+      select '30',             from: 'record_weight'
+        select '30',             from: 'record_rep'
+        select '30',             from: 'record_set'
       fill_in'record_start_time', with: '002020-10-06'
       click_button "記録する"
       expect(page).to have_content "トレーニングを記録しました"
     end
   end
 
-  describe "トレーニング記録編集ページ" do
+  context "トレーニング記録編集ページ" do
     before do
       login_for_system(user)
       visit records_path
@@ -420,7 +420,7 @@ RSpec.describe "Users", type: :system do
       end
 
       it "入力部分に適切なラベルが表示されること" do
-        expect(page).to have_content 'トレーニング名　※必須'
+        expect(page).to have_content '※必須'
         expect(page).to have_content '重量　※任意'
         expect(page).to have_content '回数　※任意'
         expect(page).to have_content 'セット数　※任意'
@@ -447,9 +447,45 @@ RSpec.describe "Users", type: :system do
       it "無効な更新" do
         fill_in "record_menu", with: ""
         click_button "更新する"
-        expect(page).to have_content "トレーニング名を入力してください"
+        expect(page).to have_content "※必須"
         expect(record.reload.menu).not_to eq ""
       end
+    end
+  end
+
+  describe "いいね" do
+    before do
+      login_for_system(user)
+    end
+
+    it "いいねする/はずすができる" do
+      expect(user.already_liked?(training)).to be_falsey
+      user.like(training)
+      expect(user.already_liked?(training)).to be_truthy
+      user.unlike(Like.first)
+      expect(user.already_liked?(training)).to be_falsey
+    end
+
+    it "いいねランキングが期待通り表示され、いいねはずすこともできること" do
+      visit likes_path
+      expect(page).not_to have_css ".trainings"
+      user.like(training)
+      training_2 = create(:training, user: user)
+      user.like(training_2)
+      visit likes_path
+      expect(page).to have_css ".trainings", count: 2
+      expect(page).to have_content training.name
+      expect(page).to have_content training.description
+      expect(training.likes.count).to eq(1)
+      expect(page).to have_content training_2.name
+      expect(page).to have_content training_2.description
+      expect(training_2.likes.count).to eq(1)
+      user.unlike(Like.first)
+      visit likes_path
+      expect(page).to have_css ".trainings", count: 1
+      find('.unlike').click
+      visit likes_path
+      expect(page).not_to have_css ".trainings"
     end
   end
 end

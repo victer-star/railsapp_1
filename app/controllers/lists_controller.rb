@@ -13,12 +13,6 @@ class ListsController < ApplicationController
       format.html { redirect_to request.referrer || root_url }
       format.js
     end
-    # 自分以外のユーザーから作成したトレーニングがリストに追加があったときのみ通知を作成
-    if @user != current_user
-      @user.notifications.create(training_id: @training.id, variety: 1,
-                                  from_user_id: current_user.id) # お気に入り登録は通知種別1
-      @user.update_attribute(:notification, true)
-    end
   end
 
   def destroy
