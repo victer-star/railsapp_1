@@ -1,0 +1,7 @@
+<% like = Like.find_by(training_id: @training.id) %>
+<%= link_to "/likes/#{like.id}/destroy",
+            method: :delete,
+            class: 'ungood',
+            remote: true do %>
+  <div class="good-btn-ungood"><i class="fas fa-like-alt"></i>いいねをはずす</div>
+<% end %>

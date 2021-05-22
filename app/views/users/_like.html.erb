@@ -1,0 +1,6 @@
+<%= link_to "/likes/#{@training.id}/create",
+            method: :post,
+            class: 'good',
+            remote: true do %>
+    <div class="good-btn-good"><i class="fas fa-heart"></i>いいねする</div>
+<% end %>

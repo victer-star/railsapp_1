@@ -595,3 +595,27 @@ h2.section-top {
   font-weight: 600;
   text-decoration-color: red;
 }
+
+// いいね //
+
+.good-btn-ungood {
+  color: red;
+}
+.good-btn-good {
+  color: grey;
+}
+a.good, a.ungood {
+  text-decoration: none;
+}
+
+.likes {
+  list-style: none;
+  li {
+    padding: 10px 0;
+    border-top: 1px solid #e8e8e8 ;
+  }
+}
+
+.good_button {
+  margin-bottom: 20px;
+}
