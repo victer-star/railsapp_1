@@ -10,7 +10,7 @@ RSpec.describe "トレーニング記録の編集", type: :request do
       get edit_record_path(record)
       login_for_request(user)
       expect(response).to redirect_to edit_record_url(record)
-      patch record_path(record), params: { records: { menu: "背筋",
+      patch record_path(record), params: { record: { menu: "背筋",
                                                       set: 1,
                                                     　weight: 20,
                                                       rep: 2,

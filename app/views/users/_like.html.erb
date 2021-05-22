@@ -1,0 +1,9 @@
+<%= link_to "/likes/#{@training.id}/create",
+            method: :post,
+            class: 'like',
+            remote: true do %>
+    <div class="like-btn-like">
+      <i class="fas fa-thumbs-up"></i>
+      <%= @training.likes.count %>
+    </div>
+<% end %>

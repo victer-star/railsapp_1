@@ -13,6 +13,9 @@ Rails.application.routes.draw do
   get    :lists,     to: 'lists#index'
   post   "lists/:training_id/create"  => "lists#create"
   delete "lists/:list_id/destroy" => "lists#destroy"
+  get   :likes,      to: 'likes#index'
+  post   "likes/:training_id/create" => "likes#create"
+  delete "likes/:like_id/destroy" => "likes#destroy"
   resources :users do
     member do
       get :following, :followers

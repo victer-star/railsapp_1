@@ -39,7 +39,7 @@ ja:
         training_id: コメントされた筋トレメニューのID
         content: コメント
       record:
-        menu: トレーニング名
+        menu: トレーニング名(15文字以内)
         weight: 重量
         rep: 回数
         set: セット数

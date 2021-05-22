@@ -1,0 +1,10 @@
+<% like = Like.find_by(training_id: @training.id) %>
+<%= link_to "/likes/#{like.id}/destroy",
+            method: :delete,
+            class: 'unlike',
+            remote: true do %>
+  <div class="like-btn-unlike">
+    <i class="fas fa-thumbs-up"></i>
+    <%= @training.likes.count %>
+  </div>
+<% end %>

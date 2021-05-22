@@ -1,9 +1,10 @@
 <div id="fh5co-portfolio">
   <div class="container">
     <div class="row">
-      <div class="col-md-12">
-        <h3>　お気に入り (<%= @favorites.count %>)</h3>
-      </div>
+      <h2 class="section-top">
+        <span class="fas fa-heart" aria-hidden="true"></span> 
+        お気に入り(<%= @favorites.count %>)
+      </h2>
     </div>
     <% if @favorites.present? %>
       <ol class="favorites">

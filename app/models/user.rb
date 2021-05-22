@@ -12,6 +12,8 @@ class User < ApplicationRecord
   has_many :notifications, dependent: :destroy
   has_many :lists, dependent: :destroy
   has_many :records, dependent: :destroy
+  has_many :likes, dependent: :destroy
+  has_many :liked_trainings, through: :likes, source: :training
   attr_accessor :remember_token, :reset_token
   before_save :downcase_email
   validates :name, presence: true, length: { maximum: 50 }
@@ -121,6 +123,21 @@ end
   # パスワード再設定のメールを送信する
   def send_password_reset_email
     UserMailer.password_reset(self).deliver_now
+  end
+
+  # トレーニングをいいねする
+  def like(training)
+    Like.create!(user_id: id, training_id: training.id)
+  end
+
+  # トレーニングをリストから解除する
+  def unlike(like)
+    like.destroy
+  end
+
+  # すでにいいねしているか判断する
+  def already_liked?(training)
+    !Like.find_by(user_id: id, training_id: training.id).nil?
   end
 
 

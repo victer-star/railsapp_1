@@ -1,9 +1,10 @@
 <div id="fh5co-portfolio">
   <div class="container">
     <div class="row">
-      <div class="col-md-12">
-        <h3>　筋トレリスト (<%= @lists.count %>)</h3>
-      </div>
+      <h2 class="section-top">
+        <span class="fas fa-list-alt" aria-hidden="true"></span> 
+        マイ筋トレリスト(<%= @lists.count %>)
+      </h2>
     </div>
     <% if @lists.present? %>
       <ol class="lists">

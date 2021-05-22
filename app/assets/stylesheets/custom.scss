@@ -493,13 +493,13 @@ h2.training-name {
   margin-bottom: 20px;
 }
 
-.like-btn-unlike {
+.favorite-btn-unfavorite {
   color: red;
 }
-.like-btn-like {
+.favorite-btn-favorite {
   color: grey;
 }
-a.like, a.unlike {
+a.favorite, a.unfavorite {
   text-decoration: none;
 }
 
@@ -565,7 +565,7 @@ a.list, a.unlist {
 }
 
 .list-button {
-  margin-bottom: 20px;
+  margin-bottom: 10px;
 }
 
 // カレンダー
@@ -594,4 +594,28 @@ h2.section-top {
   margin-bottom: 50px;
   font-weight: 600;
   text-decoration-color: red;
+}
+
+// いいね //
+
+.like-btn-unlike {
+  color: red;
+}
+.like-btn-like {
+  color: grey;
+}
+a.like, a.unlike {
+  text-decoration: none;
+}
+
+.likes {
+  list-style: none;
+  li {
+    padding: 10px 0;
+    border-top: 1px solid #e8e8e8 ;
+  }
+}
+
+.like_button {
+  margin-bottom: 20px;
 }

@@ -6,7 +6,7 @@
         <%= form_with(model: @record, local: true) do |f| %>
           <%= render 'shared/error_messages', object: f.object %>
           <div class = 'form-group'>
-            <%= f.label :menu %>　<span class="input-need">※必須</span>
+            <%= f.label :menu %> <span class="input-need">※必須</span>
             <%= f.text_field :menu, id: 'record_menu' %>
           </div>
           <div class = 'form-group'>
@@ -23,7 +23,7 @@
           </div>
           <div class = 'form-group'>
             <%= f.label :start_time %>　<span class="input-unneed">※任意</span>
-            <%= f.date_field  :start_time, id: 'record_start_time' %>
+            <%= f.datetime_field  :start_time, id: 'record_start_time' %>
           </div>
           <%= f.submit "更新する", class: "btn btn-primary" %>
         <% end %>
