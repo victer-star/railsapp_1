@@ -7,8 +7,10 @@
       <p class="notification-message">あなたのトレーニングが<%= link_to user.name, user_path(user) %>さんにお気に入り登録されました。</p>
     <% elsif notification.variety == 2 %>
       <p><%= notification.created_at.strftime("%Y/%m/%d(%a) %H:%M") %></p>
-      <p class="notification-message">あなたのトレーニングに<%= link_to user.name, user_path(user) %>さんがコメントしました。
-      「<%= notification.content %>」</p>
+      <p class="notification-message">あなたのトレーニングに<%= link_to user.name, user_path(user) %>さんがコメントしました。「<%= notification.content %>」</p>
+    <% elsif notification.variety == 3 %>
+    <p><%= notification.created_at.strftime("%Y/%m/%d(%a) %H:%M") %></p>
+    <p class="notification-message">あなたのトレーニングが<%= link_to user.name, user_path(user) %>さんにいいねされました。</p>
     <% end %>
   </div>
   <div class="row">

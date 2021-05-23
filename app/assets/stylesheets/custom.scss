@@ -141,7 +141,7 @@ input {
   margin-top: 50px;
 }
 
-// 使い方A、B
+// 使い方A、B、C
 ol.main-use {
   counter-reset:list;
   list-style-type:none;
@@ -175,12 +175,17 @@ ol.main-use li:before {
   -ms-transform: translateY(-50%);
   transform: translateY(-50%);
 }
+
 ol.main-use li.A:before {
   content: "A";
 }
 ol.main-use li.B:before {
   content: "B";
 }
+ol.main-use li.C:before {
+  content: "C";
+}
+
 ol.main-use li:after {
   content:"";
   display: block;
