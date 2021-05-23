@@ -197,22 +197,7 @@ RSpec.describe "Trainings", type: :system do
         create(:training, name: '腹筋100回だ！', user: user)
         create(:training, name: 'モテモテ腹筋を目指す！', user: other_user)
 
-        # 誰もフォローしない場合
-        fill_in 'q_name_cont', with: '背筋'
-        click_button '検索'
-        expect(page).to have_css 'h3', text: "”背筋”の検索結果：1件"
-        within find('.trainings') do
-          expect(page).to have_css 'li', count: 1
-        end
-        fill_in 'q_name_cont', with: '腹筋'
-        click_button '検索'
-        expect(page).to have_css 'h3', text: "”腹筋”の検索結果：1件"
-        within find('.trainings') do
-          expect(page).to have_css 'li', count: 1
-        end
-
-        # other_userをフォローする場合
-        user.follow(other_user)
+        # 検索
         fill_in 'q_name_cont', with: '背筋'
         click_button '検索'
         expect(page).to have_css 'h3', text: "”背筋”の検索結果：2件"

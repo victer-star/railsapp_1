@@ -3,11 +3,11 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   include SessionsHelper
 
-  # マッスルから検索条件に該当するトレーニングを検索
+  # 検索条件に該当するトレーニングを検索
   def set_search
     if logged_in?
       @search_word = params[:q][:name_cont] if params[:q]
-      @q = current_user.muscle.paginate(page: params[:page], per_page: 5).ransack(params[:q])
+      @q = Training.paginate(page: params[:page], per_page: 5).ransack(params[:q])
       @trainings = @q.result(distinct: true)
     end
   end

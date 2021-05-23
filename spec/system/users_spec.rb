@@ -278,6 +278,21 @@ RSpec.describe "Users", type: :system do
           expect(page).to have_content other_training.description
           expect(page).to have_content other_training.created_at.strftime("%Y/%m/%d(%a) %H:%M")
         end
+
+        it "いいねによって通知が作成されること" do
+          find('.like').click
+          visit training_path(other_training)
+          expect(page).to have_css 'li.no_notification'
+          logout
+          login_for_system(other_user)
+          expect(page).to have_css 'li.new_notification'
+          visit notifications_path
+          expect(page).to have_css 'li.no_notification'
+          expect(page).to have_content "あなたのトレーニングが#{user.name}さんにいいねされました。"
+          expect(page).to have_content other_training.name
+          expect(page).to have_content other_training.description
+          expect(page).to have_content other_training.created_at.strftime("%Y/%m/%d(%a) %H:%M")
+        end
       end
 
       context "自分のトレーニングに対して" do
