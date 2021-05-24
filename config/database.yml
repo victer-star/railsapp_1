@@ -9,11 +9,11 @@ default: &default
 
 development:
   <<: *default
-  # database: myapp_test_development
+  database: myapp_test_development
 
 test:
   <<: *default
-  # database: myapp_test_test
+  database: myapp_test_test
 
 production:
   url: <%= ENV['DATABASE_URL']%>
