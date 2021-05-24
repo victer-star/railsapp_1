@@ -30,4 +30,3 @@
 /vendor/bundle
 /vendor/.keep
 /public/uploads/*
-/docker-compose.yml
