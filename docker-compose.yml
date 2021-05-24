@@ -6,8 +6,7 @@ services:
     volumes:
       - ./tmp/db:/var/lib/postgresql/data
     environment:
-      - 'POSTGRES_PASSWORD=password'
-      - 'POSTGRES_HOST_AUTH_METHOD=trust'
+      POSTGRES_HOST_AUTH_METHOD: trust
 
   web:
     build: .
@@ -25,8 +24,8 @@ services:
     tty: true
     stdin_open: true
     environment:
-      - 'DATABASE_PASSWORD=postgres'
-      - 'SELENIUM_DRIVER_URL=http://chrome:4444/wd/hub'
+      DATABASE_PASSWORD: postgres
+      SELENIUM_DRIVER_URL: 'http://chrome:4444/wd/hub'
 
   chrome:
     image: selenium/standalone-chrome@sha256:4a590fc95d67a8eb13464799583991daa6a8548c9a9e2e7f234a92c9c4fa8f29   #Chromeがインストールされたイメージ

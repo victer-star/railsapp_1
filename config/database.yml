@@ -4,7 +4,7 @@ default: &default
   host: db
   port: 5432
   username: postgres
-  password: <%= ENV.fetch("POSTGRES_PASSWORD") %>
+  password: <%= ENV.fetch("DATABASE_PASSWORD") %>
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
 
 development:
