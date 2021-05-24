@@ -4,25 +4,19 @@ default: &default
   host: db
   port: 5432
   username: postgres
-  password: <%= ENV.fetch("POSTGRES_PASSWORD")   %>
+  password: <%= ENV.fetch("DATABASE_PASSWORD") %>
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
 
 development:
   <<: *default
-  database: railsapp_test_development
+  database: myapp_test_development
 
 test:
   <<: *default
-  database: railsapp_test_test
-
-# production:
-#   <<: *default
-#   database: myapp_production
-#   username: myapp
-#   password: <%= ENV['MYAPP_DATABASE_PASSWORD'] %>
+  database: myapp_test_test
 
 production:
   <<: *default
-  adapter: postgresql
-  encoding: unicode
-  database: railsapp_test_production
+  database: myapp_production
+  username: myapp
+  password: <%= ENV['DATABASE_PASSWORD'] %>
