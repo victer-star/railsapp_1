@@ -6,7 +6,7 @@ services:
     volumes:
       - ./tmp/db:/var/lib/postgresql/data
     environment:
-      POSTGRES_HOST_AUTH_METHOD: trust
+      POSTGRES_HOST_AUTH_METHOD: 'trust'
 
   web:
     build: .
@@ -24,7 +24,7 @@ services:
     tty: true
     stdin_open: true
     environment:
-      DATABASE_PASSWORD: postgres
+      DATABASE_PASSWORD: 'postgres'
       SELENIUM_DRIVER_URL: 'http://chrome:4444/wd/hub'
 
   chrome:
