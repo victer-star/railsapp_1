@@ -9,14 +9,14 @@ default: &default
 
 development:
   <<: *default
-  database: myapp_test_development
+  # database: myapp_test_development
 
 test:
   <<: *default
-  database: myapp_test_test
+  # database: myapp_test_test
 
 production:
   <<: *default
-  database: myapp_production
-  username: myapp
-  password: <%= ENV['DATABASE_PASSWORD'] %>
+  # database: myapp_production
+  # username: postgres
+  # password: <%= ENV['MYAPP_DATABASE_PASSWORD'] %>
