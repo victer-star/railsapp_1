@@ -16,11 +16,11 @@ test:
   host: localhost
   database: myapp_test
 
-production:
-  url: <%= ENV['DATABASE_URL']%>
-
 # production:
-#   <<: *default
-  # database: myapp_production
-  # username: postgres
-  # password: <%= ENV['MYAPP_DATABASE_PASSWORD'] %>
+#   url: <%= ENV['DATABASE_URL']%>
+
+production:
+  <<: *default
+  database: myapp_production
+  username: postgres
+  password: <%= ENV['MYAPP_DATABASE_PASSWORD'] %>
