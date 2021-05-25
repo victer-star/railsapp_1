@@ -43,6 +43,7 @@ group :development, :test do
   gem 'rails-controller-testing'
   gem 'rubocop-airbnb'
   gem "factory_bot_rails", "~> 4.10.0"
+  gem 'sqlite3'
 end
 
 group :development do
