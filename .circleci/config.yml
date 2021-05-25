@@ -18,7 +18,7 @@ jobs:
       - image: circleci/ruby:2.6.5
       - image: circleci/postgres:latest
         environment:
-          POSTGRES_PASSWORD: password
+          POSTGRES_PASSWORD: postgres
           POSTGRES_DATABASE: myapp_test
           POSTGRES_USER: postgres
     environment:
@@ -36,7 +36,7 @@ jobs:
           command: bundle exec rails db:migrate
       - run:
           name: test
-          command: bundle exec rake test
+          command: bundle exec rake bin/rspec
 
   deploy:
     docker:
