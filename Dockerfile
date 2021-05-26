@@ -1,4 +1,7 @@
 FROM ruby:2.6.5
+
+ENV RAILS_ENV=production
+
 RUN apt-get update -qq && apt-get install -y nodejs postgresql-client imagemagick
 RUN mkdir /myapp
 WORKDIR /myapp
@@ -7,9 +10,13 @@ COPY Gemfile.lock /myapp/Gemfile.lock
 RUN bundle install
 COPY . /myapp
 
-COPY entrypoint.sh /usr/bin/
-RUN chmod +x /usr/bin/entrypoint.sh
-ENTRYPOINT ["entrypoint.sh"]
-EXPOSE 3000
+COPY start.sh /start.sh
+RUb chmod 744 /start.sh
+CMD [ "sh", "/start.sh" ]
 
-CMD ["rails", "server", "-b", "0.0.0.0"]
+# COPY entrypoint.sh /usr/bin/
+# RUN chmod +x /usr/bin/entrypoint.sh
+# ENTRYPOINT ["entrypoint.sh"]
+# EXPOSE 3000
+
+# CMD ["rails", "server", "-b", "0.0.0.0"]
