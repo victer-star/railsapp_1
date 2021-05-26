@@ -11,7 +11,7 @@ RUN bundle install
 COPY . /myapp
 
 COPY start.sh /start.sh
-RUb chmod 744 /start.sh
+RUN chmod 744 /start.sh
 CMD [ "sh", "/start.sh" ]
 
 # COPY entrypoint.sh /usr/bin/
