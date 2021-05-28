@@ -6,7 +6,7 @@ class PictureUploader < CarrierWave::Uploader::Base
   else
     storage :file
   end
-  
+
   # storage :fog-aws
 
   def store_dir
