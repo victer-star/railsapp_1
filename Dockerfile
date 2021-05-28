@@ -2,7 +2,7 @@ FROM ruby:2.6.5
 
 ENV RAILS_ENV=production
 
-RUN apt-get update -qq && apt-get install -y nodejs postgresql-client imagemagick
+RUN apt-get update -qq && apt-get install -y nodejs postgresql-client imagemagick vim
 RUN mkdir /myapp
 WORKDIR /myapp
 COPY Gemfile /myapp/Gemfile
