@@ -3,4 +3,3 @@ User.create!(name:  "山田 太郎",
   password:              "foobar",
   password_confirmation: "foobar",
   admin: true)
-
