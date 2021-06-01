@@ -2,7 +2,7 @@
 <div id="fh5co-portfolio">
   <h2 class="section-top"><span class="fas fa-thumbs-up" aria-hidden="true"></span> いいねランキング</h2>
   <div class="container">
-    <%= @all_ranks.each.with_index(1) do |training, i| %>
+    <% @all_ranks.each.with_index(1) do |training, i| %>
       <li id="training-<%= training.id %>">
         <ul class="trainings">
           <div class="row">
