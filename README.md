@@ -1,5 +1,5 @@
 # アプリケーションの概要
-　自分がおすすめする筋トレを登録して共有できる筋トレ投稿サービス。　　　<https://muscle-king-app.herokuapp.com/>
+　自分がおすすめする筋トレを登録して共有できる筋トレ投稿サービス。　　　<muscle-king-app.herokuapp.com/>
 
 
 # 期間
